@@ -10,7 +10,7 @@ const ProductDetail = () => {
     const { addToCart } = useContext(CartContext);
 
     return (
-        <div className='flex flex-col gap-4 md:mx-20 mx-8'>
+        <div className='flex flex-col gap-4 md:mx-20 mx-8 mb-4 lg:mb-8'>
             <h2 className='text-2xl font-semibold'>Product Details</h2>
             <div className='flex flex-col lg:flex-row md:gap-6 gap-4 '>
                 <div className='w-full lg:w-1/2'>
