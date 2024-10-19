@@ -1,14 +1,20 @@
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import FeaturedProducts from './components/FeaturedProducts'
 import Navbar from './components/Navbar'
-import Slider from './components/Slider'
+import Home from './pages/Home'
+import Shop from './pages/Shop'
+import ProductDetail from './pages/ProductDetail'
 
 function App() {
   return (
-      <>
+    <>
       <Navbar />
-      <Slider />
-      <FeaturedProducts />
+      <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/shop' element={<Shop />} />
+      <Route path='/productDetail/:id' element={<ProductDetail />} />
+      </Routes>
       </>
   )
 }
