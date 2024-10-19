@@ -1,3 +1,5 @@
+
+import React from 'react'
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Search } from "./Search";
@@ -6,31 +8,32 @@ import { CiMenuBurger } from "react-icons/ci";
 import { RxCross1 } from "react-icons/rx";
 
 const Menu = () => {
-    const [openMenu, setOpenMenu] = useState(false);
-  
-    return (
-      <div className="z-20">
-       {!openMenu ? <CiMenuBurger
-          size={28}
-          onClick={() => setOpenMenu((prev) => !prev)}
-          className="cursor-pointer"
-        />: <RxCross1 size={28}
+  const [openMenu, setOpenMenu] = useState(false);
+
+  return (
+    <div className="z-20">
+      {!openMenu ? <CiMenuBurger
+        size={28}
+        onClick={() => setOpenMenu((prev) => !prev)}
+        className="cursor-pointer"
+      /> : <RxCross1 size={28}
         onClick={() => setOpenMenu((prev) => !prev)}
         className="cursor-pointer" />}
-        {openMenu && (
-          <div className="flex flex-col font-semibold text-xl absolute text-white bg-black left-0 justify-center items-center gap-8 h-[calc(100vh-80px)]  border-4 w-full">
-            <Link href="/">Homepage</Link>
-            <Link href="/">Shop</Link>
-            <Link href="/">Cart</Link>
-            <Link href="/">About</Link>
-            <Link href="/">Contact</Link>
-          </div>
-        )}
-      </div>
-    );
-  };
+      {openMenu && (
+        <div className="flex flex-col font-semibold text-xl absolute text-white bg-black left-0 justify-center items-center gap-8 h-[calc(100vh-80px)]  border-4 w-full">
+          <Link href="/">Home</Link>
+          <Link href="/shop">Shop</Link>
+          <Link href="/cart">Cart</Link>
+          <Link href="/">About</Link>
+          <Link href="/">Contact</Link>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export const Navbar = () => {
+
   return (
     <div className="h-20 px-6 py-4 relative ">
       {/* Mobile  */}
@@ -49,9 +52,9 @@ export const Navbar = () => {
             </Link>
           </div>
           <div className="hidden lg:flex gap-4 items-center">
-            <Link to="/">Homepage</Link>
-            <Link to="/">Shop</Link>
-            <Link to="/">Cart</Link>
+            <Link to="/">Home</Link>
+            <Link to="/shop">Shop</Link>
+            <Link to="/cart">Cart</Link>
             <Link to="/">About</Link>
             <Link to="/">Contact</Link>
           </div>

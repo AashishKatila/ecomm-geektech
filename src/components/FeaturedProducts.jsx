@@ -11,7 +11,7 @@ const FeaturedProducts = () => {
             <h2 className='text-3xl font-semibold'>Featured products</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 md:gap-10 gap-6 lg:grid-cols-4'>
                 {featuredProducts.map((product) => (
-                    <div className='flex flex-col gap-2 rounded-2xl justify-between'>
+                    <div className='flex flex-col gap-2 rounded-2xl justify-between' key={product.id}>
                         <div className='flex flex-col gap-2'>
                             <Link to={`/productDetail/${product.id}`}>
                                 <div className="flex justify-center items-center h-60 w-full">
