@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import CartContext from '../context/CartContext.jsx'
 import allproducts from '../data/data.js';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Shop = () => {
     const { addToCart, searchQuery } = useContext(CartContext);
@@ -30,22 +31,23 @@ const Shop = () => {
             </div>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 md:gap-10'>
                 {filteredProducts.map((product) => (
-                    <Link to={`/productDetail/${product.id}`}>
-                        <div className='flex flex-col gap-2'>
-                            <img src={product.image} className='rounded-3xl h-72' />
-                            <div className='flex justify-between'>
-                                <h2 className='text-xl'> {product.name}</h2>
-                                <p className='text-xl'>${product.price}</p>
-                            </div>
-                            <p>{product.description.slice(0, 100)} ....</p>
-                            <div>
-                                <button className='py-1 px-4 border-2 text-lg border-pink-400 rounded-3xl text-pink-400 hover:text-white hover:bg-pink-400'
-                                    onClick={() => addToCart(product)}>
-                                    Add to Cart
-                                </button>
-                            </div>
+                    <div className='flex flex-col gap-2'>
+                        <Link to={`/productDetail/${product.id}`}>
+                            <img src={product.image} className='rounded-3xl h-72 w-full' />
+                        </Link>
+
+                        <div className='flex justify-between'>
+                            <h2 className='text-xl'> {product.name}</h2>
+                            <p className='text-xl'>${product.price}</p>
                         </div>
-                    </Link>
+                        <p>{product.description.slice(0, 100)} ....</p>
+                        <div>
+                            <button className='py-1 px-4 border-2 text-lg border-pink-400 rounded-3xl text-pink-400 hover:text-white hover:bg-pink-400'
+                                onClick={() => { addToCart(product); toast.success(`${product.name} added to cart`) }}>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
                 ))}
             </div>
         </div>

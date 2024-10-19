@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import CartContext from '../context/CartContext'
+import { toast } from 'react-toastify';
 
 const Cart = () => {
   const { cart, setCart, increaseQuantity, removeFromCart, decreaseQuantity } = useContext(CartContext)
@@ -26,7 +27,7 @@ const Cart = () => {
                   <p className='font-semibold'>{item.quantity}</p>
                   <button onClick={() => increaseQuantity(item.id)} className='px-4 py-1 bg-slate-100 rounded-3xl font-bold text-xl'>+</button>
                 </div>
-                <button onClick={() => removeFromCart(item.id)} className='text-white bg-red-400 px-4 py-1 rounded-3xl'>Remove</button>
+                <button onClick={() => { removeFromCart(item.id); toast.error(`${item.name} has been removed`) }} className='text-white bg-red-400 px-4 py-1 rounded-3xl'>Remove</button>
               </div>
             </div>
           ))}

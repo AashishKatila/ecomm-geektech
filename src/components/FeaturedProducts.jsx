@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import allProducts from '../data/data'
 import CartContext from '../context/CartContext'
+import { toast } from 'react-toastify'
 
 const FeaturedProducts = () => {
     const { addToCart } = useContext(CartContext);
@@ -25,7 +26,7 @@ const FeaturedProducts = () => {
                             <p className='text-gray-500'>{product.description.slice(0, 40)}</p>
                         </div>
                         <div>
-                            <button className='py-1 px-4 border-2 border-pink-500 rounded-3xl text-pink-500 hover:text-white hover:bg-pink-500' onClick={() => addToCart(product)}>Add to Cart</button>
+                            <button className='py-1 px-4 border-2 border-pink-500 rounded-3xl text-pink-500 hover:text-white hover:bg-pink-500' onClick={() => { addToCart(product); toast.success(`${product.name} has been added`) }}>Add to Cart</button>
                         </div>
                     </div>
 
