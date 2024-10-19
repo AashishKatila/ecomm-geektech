@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import allProducts from '../data/data.js'
 import CartContext from '../context/CartContext.jsx'
 import allproducts from '../data/data.js';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
     const { addToCart } = useContext(CartContext);
@@ -29,6 +30,7 @@ const Shop = () => {
         </div>
         <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 md:gap-10'>
             {filteredProducts.map((product) =>(
+                <Link to={`/productDetail/${product.id}`}>
                 <div className='flex flex-col gap-2'>
                     <img src={product.image} className='rounded-3xl h-72' />
                     <div className='flex justify-between'>
@@ -43,6 +45,7 @@ const Shop = () => {
                         </button>
                     </div>
                 </div>
+                </Link>
             ))}
         </div>
     </div>
