@@ -7,7 +7,7 @@ const Cart = () => {
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
-    <div className='lg:mx-20 mx-8 flex flex-col gap-4'>
+    <div className='lg:mx-20 mx-8 lg:mb-10 mb-4 flex flex-col gap-4'>
       <h2 className='text-2xl font-semibold'>Your Cart</h2>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
