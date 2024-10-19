@@ -20,12 +20,12 @@ const Menu = () => {
         onClick={() => setOpenMenu((prev) => !prev)}
         className="cursor-pointer" />}
       {openMenu && (
-        <div className="flex flex-col font-semibold text-xl absolute text-white bg-black left-0 justify-center items-center gap-8 h-[calc(100vh-80px)]  border-4 w-full">
-          <Link href="/">Home</Link>
-          <Link href="/shop">Shop</Link>
-          <Link href="/cart">Cart</Link>
-          <Link href="/">About</Link>
-          <Link href="/">Contact</Link>
+        <div className="flex flex-col font-semibold text-xl absolute text-white bg-black left-0 justify-center items-center gap-8 h-screen border-4 w-full" onClick={() => setOpenMenu(false)}>
+          <Link to="/">Home</Link>
+          <Link to="/shop">Shop</Link>
+          <Link to="/cart">Cart</Link>
+          <Link to="/">About</Link>
+          <Link to="/">Contact</Link>
         </div>
       )}
     </div>
