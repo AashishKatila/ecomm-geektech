@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import CartContext from '../context/CartContext'
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const { cart, setCart, increaseQuantity, removeFromCart, decreaseQuantity } = useContext(CartContext)
@@ -30,7 +30,9 @@ const Cart = () => {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>{cart.map((item) => (
             <div key={item.id} className='flex gap-4 justify-center items-center'>
               <div>
-                <img src={item.image} className='h-60 w-72 rounded-3xl' />
+                <Link to={`/productDetail/${item.id}`}>
+                  <img src={item.image} className='h-60 w-72 rounded-3xl' />
+                </Link>
               </div>
               <div className='flex flex-col gap-2'>
                 <p className='text-lg font-medium'>{item.name}</p>
