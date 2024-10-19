@@ -4,22 +4,22 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("")
 
-    useEffect(() => {
-        const storedCart = JSON.parse(localStorage.getItem('cart'));
-        if (storedCart) {
-          setCart(storedCart); 
-        }
-      }, []);
-    
-      useEffect(() => {
-        if (cart.length > 0) {
-          localStorage.setItem('cart', JSON.stringify(cart));
-        }
-      }, [cart]);
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart'));
+    if (storedCart) {
+      setCart(storedCart);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+  }, [cart]);
 
   const addToCart = (product) => {
-    console.log("proudct = ",product)
     const existingItem = cart.find((item) => item.id === product.id);
 
     if (existingItem) {
@@ -30,10 +30,8 @@ export const CartProvider = ({ children }) => {
             : item
         )
       );
-      console.log("Existing Item found")
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
-      console.log("New item added")
     }
   };
 
@@ -44,15 +42,15 @@ export const CartProvider = ({ children }) => {
   const increaseQuantity = (id) => {
     const existingItem = cart.find((item) => item.id === id);
 
-    if(existingItem){
-        setCart(
-            cart.map((item) =>
-                item.id === id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
+    if (existingItem) {
+      setCart(
+        cart.map((item) =>
+          item.id === id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
         )
-    );
-}
+      );
+    }
   };
 
   const decreaseQuantity = (id) => {
@@ -72,7 +70,7 @@ export const CartProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart,increaseQuantity, removeFromCart, decreaseQuantity }}>
+    <CartContext.Provider value={{ cart, setCart, addToCart, increaseQuantity, removeFromCart, decreaseQuantity, searchQuery, setSearchQuery }}>
       {children}
     </CartContext.Provider>
   );

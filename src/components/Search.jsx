@@ -1,24 +1,23 @@
+import React, { useContext } from 'react'
 import { CiSearch } from "react-icons/ci";
+import CartContext from '../context/CartContext.jsx'
 
 export const Search = () => {
+  const { searchQuery, setSearchQuery } = useContext(CartContext)
 
-  function handleSearch(e) {
-    e.preventDefault();
-  }
   return (
-    <form
+    <div
       className="flex items-center justify-between flex-1 bg-gray-100 rounded-2xl "
-      onSubmit={handleSearch}
     >
       <input
         placeholder="Search ..."
         className="bg-transparent px-2 py-1 outline-none "
         type="text"
         name="name"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <button type="submit">
-        <CiSearch size={20} className="mr-4" />
-      </button>
-    </form>
+      <CiSearch size={20} className="mr-4" />
+    </div>
   );
 };
