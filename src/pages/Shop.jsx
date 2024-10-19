@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Shop = () => {
-    const { addToCart, searchQuery } = useContext(CartContext);
+    const { cart, addToCart, searchQuery } = useContext(CartContext);
     const [filter, setFilter] = useState('')
 
     const handleFilter = (e) => {
@@ -17,6 +17,10 @@ const Shop = () => {
         const matchedFilter = filter ? product.category === filter : true;
         return matchedSearchQuery && matchedFilter;
     })
+
+    const isProductInCart = (productId) => {
+        return cart.some(item => item.id === productId);
+    };
 
     return (
         <div className='flex flex-col gap-4 md:mx-20 mx-8 my-8'>
@@ -42,9 +46,15 @@ const Shop = () => {
                         </div>
                         <p>{product.description.slice(0, 100)} ....</p>
                         <div>
-                            <button className='py-1 px-4 border-2 text-lg border-pink-400 rounded-3xl text-pink-400 hover:text-white hover:bg-pink-400'
-                                onClick={() => { addToCart(product); toast.success(`${product.name} added to cart`) }}>
-                                Add to Cart
+                            <button className={`py-1 px-4 border-2 text-lg rounded-3xl ${isProductInCart(product.id) ? "cursor-not-allowed bg-gray-400 text-white  " : "border-pink-400 text-pink-400 hover:text-white hover:bg-pink-400"} `}
+                                onClick={() => {
+                                    if (!isProductInCart(product.id)) {
+                                        addToCart(product);
+                                        toast.success(`${product.name} added to cart`);
+                                    }
+                                }}
+                            >
+                                {isProductInCart(product.id) ? 'Added to Cart' : 'Add to Cart'}
                             </button>
                         </div>
                     </div>
