@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import MaleShirt from '../assets/shirt_male.jpg'
-import FemaleShirt from '../assets/shirt_female.jpeg'
-import Pant from '../assets/pant.jpg'
+import MaleShirt from '../../public/shirt_male.jpg'
+import FemaleShirt from '../../public/shirt_female.jpeg'
+import Pant from '../../public/pant.jpg'
 
 const Slider = () => {
   const slides = [
@@ -69,7 +69,7 @@ const Slider = () => {
             </div>
             {/* Image Part  */}
             <div className="h-1/2 w-full md:w-1/2 md:h-full">
-              <img src={slide.img} alt={slide.title} className="h-full w-full "  />
+              <img src={slide.img} alt={slide.title} className="h-full w-full " />
             </div>
           </div>
         ))}
@@ -80,9 +80,8 @@ const Slider = () => {
           <div
             key={slide.id}
             onClick={() => setCurrent(index)}
-            className={`w-2 h-2 rounded-full cursor-pointer bg-black ring-1 ring-offset-2 ring-black  ${
-              current === index ? "scale-125" : ""
-            } `}
+            className={`w-2 h-2 rounded-full cursor-pointer bg-black ring-1 ring-offset-2 ring-black  ${current === index ? "scale-125" : ""
+              } `}
           ></div>
         ))}
       </div>
